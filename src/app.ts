@@ -8,8 +8,8 @@ import { appConfig } from './config/app';
 import { morganMiddleware, consoleMorgan } from './utils/logger';
 import { globalErrorHandler, notFound } from './middleware/errorHandler';
 
-// Import routes (we'll create these next)
-// import routes from './routes';
+// Import routes
+import routes from './routes';
 
 const app: Application = express();
 
@@ -59,10 +59,7 @@ app.get('/health', (req, res) => {
 });
 
 // API routes
-app.use(`/api/${appConfig.apiVersion}`, (req, res, next) => {
-  // We'll add routes here in the next phase
-  res.json({ message: 'API routes will be added here' });
-});
+app.use(`/api/${appConfig.apiVersion}`, routes);
 
 // 404 handler
 app.use(notFound);
